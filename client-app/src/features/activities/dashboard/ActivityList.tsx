@@ -5,13 +5,13 @@ import { IActivity } from '../../../app/models/activity';
 interface IProps {
   activities: IActivity[];
   selectActivity: (id: string) => void;
-  setEditMode: (setEdit: boolean) => void;
+  handleDeleteActivity: (id: string) => void;
 }
 
 export const ActivityList: React.FC<IProps> = ({
   activities,
   selectActivity,
-  setEditMode,
+  handleDeleteActivity,
 }) => {
   return (
     <Segment clearing>
@@ -31,11 +31,18 @@ export const ActivityList: React.FC<IProps> = ({
                 <Button
                   onClick={() => {
                     selectActivity(activity.id);
-                    setEditMode(false);
                   }}
                   floated="right"
                   content="view"
                   color="blue"
+                />
+                <Button
+                  onClick={() => {
+                    handleDeleteActivity(activity.id);
+                  }}
+                  floated="right"
+                  content="delete"
+                  color="red"
                 />
                 <Label basic content={activity.category} />
               </Item.Extra>

@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
 import { IActivity } from '../../../app/models/activity';
+import { v4 as uuid } from 'uuid';
 
 interface IProps {
   setEditMode: (editMode: boolean) => void;
@@ -39,7 +40,7 @@ export const ActivityForm: React.FC<IProps> = ({
     } else {
       let newActivity = {
         ...activity,
-        id: 'guid',
+        id: uuid(),
       };
       handleCreateActivity(newActivity);
     }
@@ -75,7 +76,7 @@ export const ActivityForm: React.FC<IProps> = ({
         ></Form.Input>
         <Form.Input
           onChange={handleInputChange}
-          type="Date"
+          type="datetime-local"
           name="date"
           placeholder="Date"
           value={activity.date}
