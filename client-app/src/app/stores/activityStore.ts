@@ -45,10 +45,9 @@ class ActivityStore {
         this.loadingInitial = false;
       });
     } catch (error) {
-      runInAction('loading activities error', () => {
+      runInAction('load activities error', () => {
         this.loadingInitial = false;
       });
-      console.log(error);
     }
   };
 
@@ -65,7 +64,7 @@ class ActivityStore {
           this.loadingInitial = false;
         });
       } catch (error) {
-        runInAction('getting activity error', () => {
+        runInAction('get activity error', () => {
           this.loadingInitial = false;
         });
         console.log(error);
@@ -85,12 +84,12 @@ class ActivityStore {
     this.submitting = true;
     try {
       await agent.Activities.create(activity);
-      runInAction('creating activity', () => {
+      runInAction('create activity', () => {
         this.activityRegistry.set(activity.id, activity);
         this.submitting = false;
       });
     } catch (error) {
-      runInAction('creating activity error', () => {
+      runInAction('create activity error', () => {
         this.submitting = false;
       });
       console.log(error);
@@ -101,13 +100,13 @@ class ActivityStore {
     this.submitting = true;
     try {
       await agent.Activities.update(activity);
-      runInAction('updating activity', () => {
+      runInAction('editing activity', () => {
         this.activityRegistry.set(activity.id, activity);
         this.activity = activity;
         this.submitting = false;
       });
     } catch (error) {
-      runInAction('updating activity error', () => {
+      runInAction('edit activity error', () => {
         this.submitting = false;
       });
       console.log(error);
@@ -124,12 +123,11 @@ class ActivityStore {
       await agent.Activities.delete(id);
       runInAction('deleting activity', () => {
         this.activityRegistry.delete(id);
-        this.activity = null;
         this.submitting = false;
         this.target = '';
       });
     } catch (error) {
-      runInAction('deleting activity error', () => {
+      runInAction('delete activity error', () => {
         this.submitting = false;
         this.target = '';
       });
