@@ -8,9 +8,18 @@ import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import ScrollToTop from './app/layout/ScrollToTop';
-import dateFnsLocalizer from 'react-widgets-date-fns';
+import dateFnsLocalizer, { defaultFormats } from 'react-widgets-date-fns';
 
-dateFnsLocalizer();
+import locales from 'date-fns/locale';
+
+const formats = Object.assign(defaultFormats, {
+  time: 'HH:mm',
+  date: 'dd/MM/yyyy',
+});
+
+dateFnsLocalizer({ formats, locales });
+
+// dateFnsLocalizer();
 
 export const history = createBrowserHistory();
 

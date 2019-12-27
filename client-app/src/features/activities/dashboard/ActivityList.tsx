@@ -7,7 +7,6 @@ import ActivityListItem from './ActivityListItem';
 const ActivityList: React.FC = () => {
   const activityStore = useContext(ActivityStore);
   const { activitiesByDate } = activityStore;
-
   return (
     <Fragment>
       {activitiesByDate.map(([group, activities]) => (
